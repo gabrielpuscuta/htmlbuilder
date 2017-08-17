@@ -1,0 +1,15 @@
+{
+    "name":"gabrielpuscuta/htmlbuilder",
+    "description":"PHP HTML Builder with Bootstrap support",
+    "type":"library",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kubexia\\HtmlBuilder": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
