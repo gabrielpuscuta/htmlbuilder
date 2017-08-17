@@ -1,8 +1,17 @@
 {
     "name":"gabrielpuscuta/htmlbuilder",
-    "description":"PHP HTML Builder with Bootstrap support",
     "type":"library",
+    "description":"PHP HTML Builder with Bootstrap support",
+    "keywords": ["php", "html", "bootstrap"],
+    "homepage": "http://github.com/gabrielpuscuta/htmlbuilder",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Gabriel Puscuta",
+            "email": "gabriel.puscuta@gmail.com",
+            "homepage": "http://gabrielpuscuta.com"
+        }
+    ],
     "require": {
         "php": ">=5.5.9"
     },
