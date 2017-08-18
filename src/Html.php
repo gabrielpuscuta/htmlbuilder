@@ -56,9 +56,22 @@ class Html extends Element{
         return isset(static::$templates[$name]) ? static::$templates[$name] : NULL;
     }
     
-    static public function runTemplate($name, array $args = []){
+    static public function runTemplate($name, $args = []){
         if(!static::hasTemplate($name)){
             return NULL;
+        }
+        
+        if($args instanceof \Closure){
+            $args = [$args];
+        }
+        else{
+            if(!empty($args)){
+                foreach($args as $key => $value){
+                    if($value instanceof \Closure){
+                        $args[$key] = static::runCallback($value);
+                    }
+                }
+            }
         }
         
         return call_user_func_array(static::getTemplate($name), $args);
@@ -101,6 +114,10 @@ class Html extends Element{
     
     static public function element($tag){
         return new Html($tag);
+    }
+    
+    static public function div($content){
+        return Html::element('div')->text($content);
     }
     
     static public function paragraph($content){

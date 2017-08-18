@@ -58,6 +58,16 @@ class Page extends Element{
         return $this;
     }
     
+    public function head($callback){
+        if(!isset(static::$data['head'])){
+            static::$data['head'] = [];
+        }
+        
+        static::$data['head'] = $callback;
+        
+        return $this;
+    }
+    
     static public function registerPlugin($name, $callback){
         if(!isset(static::$data['plugins'])){
             static::$data['plugins'] = [];
@@ -76,6 +86,11 @@ class Page extends Element{
                 Html::element('meta')->charset('utf-8')->render(),
                 Html::element('meta')->attributes(['name' => 'viewport','content' => 'width=device-width, initial-scale=1, shrink-to-fit=no'])->render(),
             ];
+            
+            if($this->hasData('head')){
+                $head = (is_array($this->getData('head')) ? $this->getData('head') : Html::runCallback($this->getData('head')));
+                $content = array_merge($content, $head);
+            }
             
             if($this->hasData('css')){
                 foreach($this->getData('css') as $attributes){

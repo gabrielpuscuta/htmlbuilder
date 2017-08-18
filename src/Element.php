@@ -71,7 +71,10 @@ class Element{
         return isset($this->callable[$name]) ? TRUE : FALSE;
     }
     
-    public function addClass($value){
+    public function addClass($value = NULL){
+        if(is_null($value) || strlen($value) === 0){
+            return $this;
+        }
         if (!isset($this->attributes['class']) || is_null($this->attributes['class'])) {
             $this->attributes['class'] = [];
         }
